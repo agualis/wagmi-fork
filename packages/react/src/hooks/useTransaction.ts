@@ -60,8 +60,10 @@ export function useTransaction<
     ...parameters,
     chainId: parameters.chainId ?? chainId,
   })
+
+  const allFalse = !blockHash && !blockNumber &&  !blockTag && !hash
   const enabled = Boolean(
-    !(blockHash && blockNumber && blockTag && hash) && (query.enabled ?? true),
+    !(allFalse) && (query.enabled ?? true),
   )
 
   return useQuery({

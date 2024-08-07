@@ -70,3 +70,47 @@ test('default', async () => {
     }
   `)
 })
+
+test('disabled when hash is undefined', async () => {
+  const { result } = renderHook(() =>
+    useTransaction({
+      hash: undefined,
+    }),
+  )
+
+  expect(result.current).toMatchInlineSnapshot(`
+    {
+      "data": undefined,
+      "dataUpdatedAt": 0,
+      "error": null,
+      "errorUpdateCount": 0,
+      "errorUpdatedAt": 0,
+      "failureCount": 0,
+      "failureReason": null,
+      "fetchStatus": "idle",
+      "isError": false,
+      "isFetched": false,
+      "isFetchedAfterMount": false,
+      "isFetching": false,
+      "isInitialLoading": false,
+      "isLoading": false,
+      "isLoadingError": false,
+      "isPaused": false,
+      "isPending": true,
+      "isPlaceholderData": false,
+      "isRefetchError": false,
+      "isRefetching": false,
+      "isStale": false,
+      "isSuccess": false,
+      "queryKey": [
+        "transaction",
+        {
+          "chainId": 1,
+          "hash": undefined,
+        },
+      ],
+      "refetch": [Function],
+      "status": "pending",
+    }
+  `)
+})
